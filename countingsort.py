@@ -14,14 +14,14 @@ def countingsort(lst: List[int]) -> List[int]:
     occurs = [0] * (max_val + 1)
     
     # Count occurrences
-    for e in lst:
-        occurs[e] += 1
+    for i in lst:
+        occurs[i] += 1
     
     # Build output list
     out = []
-    for index, occur in enumerate(occurs):
-        if occur > 0:
+    for i, v in enumerate(occurs):
+        if v > 0:
             # Add the element index, occur times
-            out += [index] * occur
+            out += [i] * v
     
     return out
