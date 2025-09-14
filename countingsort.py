@@ -1,20 +1,27 @@
-# https://en.wikipedia.org/wiki/Counting_sort
+from typing import List
 
-from random import randrange
+def countingsort(lst: List[int]) -> List[int]:
+    """Simple counting sort implementation assuming non-negative integers"""
+    # Handle empty list
+    if not lst:
+        return []
+    
+    # Find the maximum value
+    max_val = max(lst)
 
-def countingsort(l):
-    occurs = [0] * (max(l)+1)
-    out = []
-    for e in l:
+    # Initialize occurrences list
+    # Using list multiplication for better performance
+    occurs = [0] * (max_val + 1)
+    
+    # Count occurrences
+    for e in lst:
         occurs[e] += 1
-    for i,e in enumerate(occurs):
-        out += [i] * e
+    
+    # Build output list
+    out = []
+    for index, occur in enumerate(occurs):
+        if occur > 0:
+            # Add the element index, occur times
+            out += [index] * occur
+    
     return out
-
-
-# test
-elem_range = 100
-size = 10
-l = [randrange(0,elem_range) for _ in range(size)]
-print(l)
-print(countingsort(l))
